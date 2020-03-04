@@ -1,4 +1,4 @@
-package com.mcy.zhihuspider.util;
+package com.mcy.zhihuspider.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
@@ -19,7 +19,7 @@ import java.util.*;
  * Bean获取的工具类
  */
 @Component
-public class ObtainBeanUtil implements ApplicationContextAware {
+public class ObtainBeanService implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
