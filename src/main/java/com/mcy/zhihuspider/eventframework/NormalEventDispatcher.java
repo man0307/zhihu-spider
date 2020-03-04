@@ -1,12 +1,15 @@
 package com.mcy.zhihuspider.eventframework;
 
+import com.mcy.zhihuspider.service.ObtainBeanService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -25,15 +28,18 @@ public class NormalEventDispatcher implements Dispatcher {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Resource
+    private ObtainBeanService obtainBeanService;
+
     private Map<Class<? extends Event>, Handler<? extends Event>> handlerMap;
 
 
     @PostConstruct
     public void init() {
         //初始化容器中对应的Handler与其所关注事件类型的映射关系
-        Map<String, Handler> eventHandlerMap = applicationContext.getBeansOfType(Handler.class);
-        handlerMap = new HashMap<>(eventHandlerMap.size());
-        eventHandlerMap.values().forEach(handler -> {
+        List<Handler> eventHandlerList = obtainBeanService.getBeansWithInterface(Handler.class);
+        handlerMap = new HashMap<>(eventHandlerList.size());
+        eventHandlerList.forEach(handler -> {
             //noinspection unchecked
             if (handlerMap.put(handler.getInterestedEventClass(), handler) != null) {
                 throw new IllegalArgumentException("the event type already exist.");
