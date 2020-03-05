@@ -25,7 +25,7 @@ import java.util.Objects;
 @Slf4j
 public class NormalEventDispatcher implements Dispatcher {
 
-    @Autowired
+    @Resource
     private ApplicationContext applicationContext;
 
     @Resource
