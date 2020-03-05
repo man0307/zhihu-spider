@@ -2,6 +2,7 @@ package com.mcy.zhihuspider.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.ResolvableType;
@@ -35,6 +36,7 @@ public class ObtainBeanService implements ApplicationContextAware {
      * @param <T>   该Bean的类
      * @return 结果Bean
      */
+    @Cacheable(cacheNames = "TEST_TT")
     public <T> T getBean(Class<T> clazz) {
         return applicationContext.getBean(clazz);
     }
