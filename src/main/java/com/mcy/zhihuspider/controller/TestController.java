@@ -22,7 +22,7 @@ public class TestController {
     @RequestMapping(value = "/swagger_test", method = RequestMethod.GET)
     @ApiOperation("Swagger的测试接口")
     public ResultModel<String> testSwagger(@RequestParam(value = "age") Integer age,
-                                           @RequestParam(value = "name") Integer name) {
+                                           @RequestParam(value = "name") String name) {
         return ResultModel.success("you are right.");
     }
 
