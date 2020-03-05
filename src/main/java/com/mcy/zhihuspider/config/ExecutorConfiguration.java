@@ -19,7 +19,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 @ConfigurationProperties(prefix = "spring.task.execution.pool")
 @Data
-public class ExecutorConfig {
+public class ExecutorConfiguration {
 
     private Boolean allowCoreThreadTimeout;
 

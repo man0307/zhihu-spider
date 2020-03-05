@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/3/5 9:40 上午
  */
 @Configuration
-public class SwaggerConfig {
-    //todo 接入Swagger
+public class RocketMQConfiguration {
+    //todo 接入RocketMQ
 }

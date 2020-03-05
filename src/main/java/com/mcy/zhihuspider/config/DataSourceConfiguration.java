@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @ConfigurationProperties(prefix = "spring.datasource")
 @Data
-public class DataSourceConfig {
+public class DataSourceConfiguration {
 
     private String url;
 

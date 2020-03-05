@@ -12,7 +12,7 @@ import java.util.Properties;
  * @date 2020/2/15 9:45 下午
  */
 @Configuration
-public class PageHelperConfig {
+public class PageHelperConfiguration {
 
     @Bean
     public PageHelper pageHelper() {
