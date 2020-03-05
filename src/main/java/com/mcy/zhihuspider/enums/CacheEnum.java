@@ -10,7 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2020/3/5 11:07 上午
  */
 public enum CacheEnum {
-    TEST_TT(60 * 3L);
+
+    ;
     /**
      * 缓存的过期时间
      */
