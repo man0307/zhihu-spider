@@ -43,20 +43,5 @@ public abstract class AbstractHandler<T extends Event> implements Handler<T> {
     protected abstract void processEvent(T event);
 
 
-    /**
-     * 对象属性拷贝 <br>
-     * 将源对象的属性拷贝到目标对象
-     *
-     * @param source 源对象
-     * @param target 目标对象
-     */
-    public static void copyProperties(Object source, Object target) {
-        try {
-            BeanUtils.copyProperties(source, target);
-        } catch (BeansException e) {
-            log.error("BeanUtil property copy  failed :BeansException", e);
-        } catch (Exception e) {
-            log.error("BeanUtil property copy failed:Exception", e);
-        }
-    }
+
 }
