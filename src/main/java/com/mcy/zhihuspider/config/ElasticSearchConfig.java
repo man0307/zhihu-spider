@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/3/5 9:41 上午
  */
 @Configuration
-public class ElasticeSearchConfig {
+public class ElasticSearchConfig {
     //todo 接入ES
 }
