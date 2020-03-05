@@ -3,8 +3,6 @@ package com.mcy.zhihuspider.eventframework.handlers;
 import com.mcy.zhihuspider.eventframework.Event;
 import com.mcy.zhihuspider.eventframework.Handler;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeansException;
 
 /**
  * @author chaoyang.man
