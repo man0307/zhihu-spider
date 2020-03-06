@@ -1,6 +1,7 @@
 package com.mcy.zhihuspider.util;
 
 
+import com.mcy.zhihuspider.util.fuctions.ProcessListFunction;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * <p>
  * 分断处理列表的工具类
  */
-public class SegmentedProcessingList {
+public class SegmentedProcessingListUtils {
 
     /**
      * 分段处理长列表

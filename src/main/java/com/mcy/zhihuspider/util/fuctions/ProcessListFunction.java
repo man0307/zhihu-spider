@@ -1,4 +1,4 @@
-package com.mcy.zhihuspider.util;
+package com.mcy.zhihuspider.util.fuctions;
 
 import java.util.List;
 
