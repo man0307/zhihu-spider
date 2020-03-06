@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/zhihu?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/info_boom?useUnicode=true&characterEncoding=utf8
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: manchaoyang0307
@@ -15,7 +15,7 @@ spring:
       thread-name-prefix: task-event-store
   #  kafka配置
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: 127.0.0.1:9092
     producer:
       # 发生错误后，消息重发的次数。
       retries: 3
@@ -119,6 +119,13 @@ logging:
 server:
   port: 7001
 
+kafka:
+  topic:
+    group-id: topicGroupId
+    topic-name:
+      - topic1
+      - topic2
+      - topic3
 
 
 
