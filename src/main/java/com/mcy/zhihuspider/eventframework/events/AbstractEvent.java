@@ -16,6 +16,7 @@ public abstract class AbstractEvent implements Event, Serializable {
 
     private static final long serialVersionUID = 123456789L;
 
+    
     @Override
     public Class<? extends Event> getEventType() {
         return this.getClass();
