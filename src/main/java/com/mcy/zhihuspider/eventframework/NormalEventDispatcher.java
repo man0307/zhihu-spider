@@ -26,9 +26,6 @@ import java.util.Objects;
 public class NormalEventDispatcher implements Dispatcher {
 
     @Resource
-    private ApplicationContext applicationContext;
-
-    @Resource
     private ObtainBeanService obtainBeanService;
 
     private Map<Class<? extends Event>, Handler<? extends Event>> handlerMap;
