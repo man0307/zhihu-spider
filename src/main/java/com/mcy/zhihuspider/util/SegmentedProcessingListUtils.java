@@ -6,8 +6,6 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
-;
-
 /**
  * @author chaoyang.man
  * @version 1.0

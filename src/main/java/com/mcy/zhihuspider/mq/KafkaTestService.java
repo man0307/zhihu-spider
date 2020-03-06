@@ -38,6 +38,7 @@ public class KafkaTestService {
         log.info("kafka processMessage start");
         log.info("processMessage, topic = {}, msg = {}", record.topic(), record.value());
 
+        log.info("万物自有其因果");
         // do something ...
 
         log.info("kafka processMessage end");
