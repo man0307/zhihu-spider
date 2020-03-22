@@ -23,9 +23,14 @@ public class ResultModel<T> implements Serializable {
     private Boolean success;
 
     /**
-     * 错误信息
+     * 用户错误提示
      */
-    private String msg;
+    private String tips;
+
+    /**
+     * 系统错误信息
+     */
+    private String errorMsg;
 
     /**
      * 错误码
@@ -59,7 +64,7 @@ public class ResultModel<T> implements Serializable {
         ResultModel<T> result = new ResultModel<>();
         result.setSuccess(false);
         result.setErrorCode(errorCode.getCode());
-        result.setMsg(msg);
+        result.setErrorMsg(msg);
         return result;
     }
 
@@ -71,7 +76,7 @@ public class ResultModel<T> implements Serializable {
     public static <T> ResultModel<T> failed(String msg) {
         ResultModel<T> result = new ResultModel<>();
         result.setSuccess(false);
-        result.setMsg(msg);
+        result.setErrorMsg(msg);
         return result;
     }
 

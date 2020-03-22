@@ -12,10 +12,26 @@ import com.mcy.infoboom.enums.InfoBoomErrorCode;
 public abstract class AbstractInfoBoomException extends Exception {
 
     /**
+     * 错误码
+     */
+    private InfoBoomErrorCode infoBoomErrorCode;
+
+    public AbstractInfoBoomException(InfoBoomErrorCode infoBoomErrorCode) {
+        this.infoBoomErrorCode = infoBoomErrorCode;
+    }
+
+
+    /**
      * 获取错误码
      *
      * @return 错误码
      */
-    abstract InfoBoomErrorCode getErrorCode();
+    public InfoBoomErrorCode getErrorCode() {
+        return this.infoBoomErrorCode;
+    }
+
+    public void setErrorCode(InfoBoomErrorCode infoBoomErrorCode) {
+
+    }
 
 }

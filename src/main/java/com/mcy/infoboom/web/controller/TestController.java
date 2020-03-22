@@ -1,7 +1,10 @@
-package com.mcy.infoboom.controller;
+package com.mcy.infoboom.web.controller;
 
+import com.mcy.infoboom.enums.InfoBoomErrorCode;
+import com.mcy.infoboom.exception.AtomicOperateException;
 import com.mcy.infoboom.mq.KafkaTestService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +29,17 @@ public class TestController {
 
 
     @RequestMapping(value = "/test_kafka", method = RequestMethod.GET)
-    public String testCrawlChapterLink(@RequestParam("topic") String topic,
-                                       @RequestParam("data") String data) {
+    @ApiOperation("Kafka测试")
+    public String testKafka(@RequestParam("topic") String topic,
+                            @RequestParam("data") String data) {
         kafkaTestService.sendMessage(topic, data);
         return "true";
+    }
+
+    @RequestMapping(value = "/test_exception", method = RequestMethod.GET)
+    @ApiOperation("统一测Controller层错误处理测试")
+    public String testException() throws AtomicOperateException {
+        throw new AtomicOperateException(InfoBoomErrorCode.DATABASE_QUERY_ERROR);
     }
 
 }
