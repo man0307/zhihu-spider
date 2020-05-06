@@ -11,9 +11,8 @@ import java.io.Serializable;
  */
 @Data
 public class ResultModel<T> implements Serializable {
-
     /**
-     * 序列号
+     * 用于序列化
      */
     private static final long serialVersionUID = -91231231434L;
 
