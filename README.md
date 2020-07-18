@@ -12,11 +12,9 @@
  - Kafka
  - Quarzt
  - Swagger
- - 前端待定//@lyx
 
 ## 成员
  - chaoyang.man
- - lyx
 
 ## 规范
  - 代码规范:参考阿里巴巴代码规约
