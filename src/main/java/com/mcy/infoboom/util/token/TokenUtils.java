@@ -2,6 +2,7 @@ package com.mcy.infoboom.util.token;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class TokenUtils {
 
 
     @Resource
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     /**
      * 获取token
@@ -59,11 +60,12 @@ public class TokenUtils {
             return false;
         }
 
-        String value = redisTemplate.opsForValue().get(getTokenKey(token));
+        String value = (String) redisTemplate.opsForValue().get(getTokenKey(token));
         if (StringUtils.isBlank(value)) {
             return true;
 
         }
+
         redisTemplate.opsForValue().set(getTokenKey(token), TOKEN_EXPIRED_VALUE, Duration.ofMillis(TOKEN_TTL_DAYS));
         return true;
     }

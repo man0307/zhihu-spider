@@ -2,10 +2,10 @@ package com.mcy.infoboom.util.lock;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.time.Duration;
 
 /**
@@ -20,7 +20,7 @@ import java.time.Duration;
 public class RedisLock {
 
 
-    @Resource
+    @Autowired
     private StringRedisTemplate redisTemplate;
 
     /**
@@ -31,7 +31,7 @@ public class RedisLock {
      * @param delay   延迟 防止死锁(必填字段)
      * @return 是否获取锁成功
      */
-    private Boolean getLock(String lockKey, String value, long delay) {
+    public Boolean getLock(String lockKey, String value, long delay) {
         if (StringUtils.isBlank(lockKey) || StringUtils.isBlank(value)) {
             return false;
         }
@@ -40,8 +40,8 @@ public class RedisLock {
             return redisTemplate.opsForValue().setIfAbsent(lockKey, value, Duration.ofMillis(delay));
         } catch (Exception e) {
             log.error("RedisLock-getLock error.lockKey={},value={},delay={}", lockKey, value, delay);
-            throw e;
         }
+        return false;
     }
 
     /**
@@ -51,7 +51,7 @@ public class RedisLock {
      * @param value   值
      * @return 是否释放锁成功
      */
-    private Boolean releaseLock(String lockKey, String value) {
+    public Boolean releaseLock(String lockKey, String value) {
         if (StringUtils.isBlank(lockKey) || StringUtils.isBlank(value)) {
             return false;
         }
