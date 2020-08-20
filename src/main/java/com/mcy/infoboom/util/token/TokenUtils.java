@@ -3,11 +3,11 @@ package com.mcy.infoboom.util.token;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.time.Duration;
+import java.util.Objects;
 import java.util.UUID;
 
 import static com.mcy.infoboom.constants.WebConstants.*;
@@ -28,18 +28,7 @@ public class TokenUtils {
 
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
-
-    /**
-     * 获取token
-     *
-     * @return token
-     */
-    public String getToken() {
-        String token = UUID.randomUUID().toString();
-        buildToken(token);
-        return token;
-    }
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 获取Redis中对应的key
@@ -51,6 +40,7 @@ public class TokenUtils {
         if (StringUtils.isBlank(token)) {
             return token;
         }
+        redisTemplate.opsForValue().set(getTokenKey(token), TOKEN_VALID_VALUE, Duration.ofDays(TOKEN_TTL_DAYS));
         return TOKEN_PRE + token;
     }
 
@@ -60,14 +50,31 @@ public class TokenUtils {
             return false;
         }
 
-        String value = (String) redisTemplate.opsForValue().get(getTokenKey(token));
-        if (StringUtils.isBlank(value)) {
-            return true;
-
+        //token不存在则说明过期/无效
+        if (Objects.isNull(redisTemplate.opsForValue().get(getTokenKey(token)))) {
+            return false;
         }
 
-        redisTemplate.opsForValue().set(getTokenKey(token), TOKEN_EXPIRED_VALUE, Duration.ofMillis(TOKEN_TTL_DAYS));
+        String value = (String) redisTemplate.opsForValue().get(getTokenKey(token));
+        //已经过期
+        if (StringUtils.equals(TOKEN_EXPIRED_VALUE, value)) {
+            return false;
+        }
+
+        redisTemplate.opsForValue().set(getTokenKey(token), TOKEN_EXPIRED_VALUE, Duration.ofDays(TOKEN_TTL_DAYS));
         return true;
+    }
+
+
+    /**
+     * 获取token
+     *
+     * @return token
+     */
+    public String getToken() {
+        String token = UUID.randomUUID().toString();
+        buildToken(token);
+        return token;
     }
 
     /**
